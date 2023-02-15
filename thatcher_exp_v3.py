@@ -66,6 +66,8 @@ Press space when you're ready to start
 goodbye = ''' 
 Eksperimentet er nu færdigt. Tak for din deltagelse. '''
 
+blank = ''' '''
+
 # Experiment intiated
 
 ## designing functions
@@ -75,6 +77,11 @@ def msg(txt):
     message.draw()
     win.flip()
     event.waitKeys(keyList = ["space"])
+
+def blanker(txt):
+    message = visual.TextStim(win, text = txt, alignText = "left", height = 0.05)
+    message.draw()
+    win.flip()
 
 # Experiment intiation
 
@@ -90,6 +97,14 @@ for i in stimuli:
     stimulus.draw()
     #flip the window
     win.flip()
+    # wait 
+    core.wait(1)
+    # draw visual noise for 0.2 sec
+    noise.draw()
+    win.flip()
+    core.wait(0.5)
+    #show a blank screen
+    blanker(blank)
     #reseting the stop watch
     stopwatch.reset() #asking it to start the timer here
     #wait until key press
@@ -126,10 +141,6 @@ for i in stimuli:
         Accuracy = 1
     else:
         Accuracy = 0
-    
-    noise.draw()
-    win.flip()
-    core.wait(1)
 
     #append data to logfile
     logfile = logfile.append({
