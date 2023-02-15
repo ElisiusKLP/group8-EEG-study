@@ -1,0 +1,19 @@
+Conditions
+
+Familiar faces
+changed_familiar_0rotation
+changed_familiar_90rotation
+changed_familiar_180rotation
+
+unchanged_familiar_0rotation
+unchanged_familiar_90rotation
+unchanged_familiar_180rotation
+
+Unfamiliar faces
+changed_unfamiliar_0rotation
+changed_unfamiliar_90rotation
+changed_unfamiliar_180rotation
+
+unchanged_unfamiliar_0rotation
+unchanged_unfamiliar_90rotation
+unchanged_unfamiliar_180rotation
