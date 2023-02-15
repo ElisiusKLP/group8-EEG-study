@@ -5,6 +5,39 @@ from psychopy import visual, core, event, sound, gui, data #gui making the gui, 
 import glob
 import random #need to figure out what this does??
 import pandas as pd
+from psychopy import parallel
+import platform
+import csv
+import os # package to fix file directions onto every os
+from triggers import setParallelData #for the EEG trigger
+
+# Experimental parameters
+RETINA = True #set to true if using mac with retina screen, set to false if using other OS
+
+PLATFORM = platform.platform()
+if 'Linux' in PLATFORM:
+    port = parallel.ParallelPort(address='/dev/parport0')  # on MEG stim PC
+else:  # on Win this will work, on Mac we catch error below
+    port = parallel.ParallelPort(address=0xDFF8)  # on MEG stim PC
+
+# Figure out whether to flip pins or fake it
+try:
+    port.setData(128)
+except NotImplementedError:
+    def setParallelData(code=1):
+        if code > 0:
+            # logging.exp('TRIG %d (Fake)' % code)
+            print('TRIG %d (Fake)' % code)
+            pass
+else:
+    port.setData(0)
+    setParallelData = port.setData
+
+# Monitor parameters
+MON_DISTANCE = 60 # Distance between subject's eyes and monitor
+MON_WIDTH = 20 # Width of your monitoir in cm
+MON_SIZE = [1440, 900] # Pixel dimension of your monitor
+FRAME_RATE = 60 # Hz
 
 dialog = gui.Dlg (title = "Face EEG experiment")
 dialog.addField("Participant ID:")
@@ -39,7 +72,7 @@ logfile = pd.DataFrame(columns = cols)
 
 
 ## Defining stimulus images from folder
-stimuli = glob.glob("stimuli/*")
+stimuli = glob.glob(os.path.join("stimuli", "*") )
 
 random.shuffle(stimuli) # putting the list of all movie paths in random order
 
@@ -66,7 +99,7 @@ Press space when you're ready to start
 goodbye = ''' 
 Eksperimentet er nu færdigt. Tak for din deltagelse. '''
 
-# Experiment intiated
+## Define triggers
 
 ## designing functions
 ### msg function show text and wait for key press
