@@ -1,0 +1,46 @@
+BrainVision Data Exchange Marker File Version 1.0
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=testgroup8.eeg
+
+[Marker Infos]
+; Each entry: Mk<Marker number>=<Type>,<Description>,<Position in data points>,
+; <Size in data points>, <Channel number (0 = marker is related to all channels)>
+; Fields are delimited by commas, some fields might be omitted (empty).
+; Commas in type or description text are coded as "\1".
+Mk1=New Segment,,1,1,0,20230222134152116662
+Mk2=Response,R 13,24571,1,0
+Mk3=Stimulus,S  5,24571,1,0
+Mk4=Stimulus,S  2,27340,1,0
+Mk5=Response,R  7,28374,1,0
+Mk6=Stimulus,S  1,28374,1,0
+Mk7=Stimulus,S  2,30209,1,0
+Mk8=Response,R 13,31243,1,0
+Mk9=Stimulus,S  3,31243,1,0
+Mk10=Stimulus,S  2,33495,1,0
+Mk11=Response,R  6,34530,1,0
+Mk12=Stimulus,S 15,34530,1,0
+Mk13=Stimulus,S  2,36080,1,0
+Mk14=Response,R 13,37116,1,0
+Mk15=Stimulus,S 15,37116,1,0
+Mk16=Stimulus,S  2,40050,1,0
+Mk17=Response,R 13,41085,1,0
+Mk18=Stimulus,S 13,41085,1,0
+Mk19=Stimulus,S  1,42285,1,0
+Mk20=Response,R  7,43321,1,0
+Mk21=Stimulus,S 11,43321,1,0
+Mk22=Stimulus,S  1,45454,1,0
+Mk23=Response,R  7,46489,1,0
+Mk24=Stimulus,S  2,49408,1,0
+Mk25=Response,R 13,50442,1,0
+Mk26=Stimulus,S  4,50442,1,0
+Mk27=Stimulus,S  2,53361,1,0
+Mk28=Response,R 13,54395,1,0
+Mk29=Stimulus,S 14,54395,1,0
+Mk30=Stimulus,S  1,59215,1,0
+Mk31=Response,R  7,60250,1,0
+Mk32=Stimulus,S 11,60250,1,0
+Mk33=Stimulus,S  2,63019,1,0
+Mk34=Response,R  7,64053,1,0
+Mk35=Stimulus,S 11,64053,1,0
