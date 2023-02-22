@@ -8,7 +8,7 @@ from psychopy import parallel
 import platform
 import csv
 import os # package to fix file directions onto every os
-#from triggers import setParallelData #for the EEG trigger
+from triggers import setParallelData #for the EEG trigger
 
 # Experimental parameters
 RETINA = True #set to true if using mac with retina screen, set to false if using other OS
@@ -179,7 +179,7 @@ for i in stimuli:
     Rotation, Familiarity, Changed = save_stimuli_variables(i)
     StimTrig = get_stimuli_trigger(Rotation, Familiarity, Changed)
     print(f"Stim = {StimTrig}")
-    #### win.callOnFlip(setParallelData, StimTrig)
+    win.callOnFlip(setParallelData, StimTrig)
     #draw to canvas
     stimulus.draw()
     #flip the window
@@ -193,7 +193,7 @@ for i in stimuli:
     key = event.waitKeys(keyList = ["left","right", "q"])
     Response, Accuracy = check_accuracy(key, i)
     RespTrig = get_response_trigger(Response)
-    #### win.callOnFlip(setParallelData, RespTrig)
+    win.callOnFlip(setParallelData, RespTrig)
     print(f"Resp = {RespTrig}")
     
     # "ask" how much time it took for the participants to answer?
