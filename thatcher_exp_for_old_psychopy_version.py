@@ -16,7 +16,7 @@ RETINA = True #set to true if using mac with retina screen, set to false if usin
 # Monitor parameters
 MON_DISTANCE = 60 # Distance between subject's eyes and monitor
 MON_WIDTH = 20 # Width of your monitoir in cm
-MON_SIZE = [1440, 900] # Pixel dimension of your monitor
+MON_SIZE = [1280, 800] # Pixel dimension of your monitor
 FRAME_RATE = 60 # Hz
 
 # Defining and running dialog_boxes
@@ -85,16 +85,18 @@ Press space when you're ready to start
 
 ### Defining goodbye message
 goodbye = ''' 
-Eksperimentet er nu færdigt. Tak for din deltagelse. '''
+The experiment is now done. Thanks for your participation.'''
 
 
 ## designing functions
 ### msg function show text and wait for key press
 def msg(txt):
-    message = visual.TextStim(win, text = txt, alignText = "left", height = 0.05)
+    #message = visual.TextStim(win, text = txt, alignText = "left", height = 0.05
+    message = visual.TextStim(win, text = txt)
     message.draw()
     win.flip()
     event.waitKeys(keyList = ["space"])
+
 
 
 def save_stimuli_variables(i):  
@@ -140,14 +142,13 @@ def get_stimuli_trigger(Rotation, Familiarity, Changed):
 def check_accuracy(key, i):
     #Check response
     if (key == ["q"]): 
-        Response = "change" 
-        pass
+        Response = "change"
     elif (key == ["left"]):
         Response = "change"
     else:
         Response = "no_change"
     #check accuracy
-    if ( ("_changed" in i and key == ["left"]) or ("_unchanged" in i and key == ["right"]) ): 
+    if ( ("_changed" in i and key == ["left"]) or ("_unchanged" in i and key == ["right"])): 
         Accuracy = 1
     else:
         Accuracy = 0
@@ -191,6 +192,7 @@ for i in stimuli:
     
     #reseting the stop watch
     stopwatch.reset() #asking it to start the timer here
+
     #wait until key press
     key = event.waitKeys(keyList = ["left","right", "q"])
     Response, Accuracy = check_accuracy(key, i)
