@@ -8,7 +8,7 @@ from psychopy import parallel
 import platform
 import csv
 import os # package to fix file directions onto every os
-from triggers import setParallelData #for the EEG trigger
+#from triggers import setParallelData #for the EEG trigger
 
 # Experimental parameters
 RETINA = True #set to true if using mac with retina screen, set to false if using other OS
@@ -47,10 +47,11 @@ save_values()
 win = visual.Window(color = "black", fullscr = True)
 
 ## Defining columns for dataframe
-cols = ["Timestamp","ID", "Age","Gender", "Handedness","Response", "ReactionTime", "Stimulus", "Rotation", "Familiarity", "Changed","Accuracy", "StimulusTrigger", "ResponseTrigger"]
+cols = ["Initiation_date","ID", "Age","Gender", "Handedness","Response", "ReactionTime", "Stimulus", "Rotation", "Familiarity", "Changed","Accuracy", "StimulusTrigger", "ResponseTrigger", "Timestamp"]
 
 ## Define stopwatch
 stopwatch = core.Clock()
+stopwatch_2 = core.Clock()
 
 # define timestamp/date
 date = data.getDateStr()
@@ -139,7 +140,8 @@ def get_stimuli_trigger(Rotation, Familiarity, Changed):
 def check_accuracy(key, i):
     #Check response
     if (key == ["q"]): 
-        core.quit
+        Response = "change" 
+        pass
     elif (key == ["left"]):
         Response = "change"
     else:
@@ -172,8 +174,9 @@ msg(instruction)
 
 ## Experiment loop
 
+
+stopwatch_2.reset()
 for i in stimuli:
-    #### setParallelData(0) should this be reset after flip?
     #prepare stimulus
     stimulus = visual.ImageStim(win, image = i)
     Rotation, Familiarity, Changed = save_stimuli_variables(i)
@@ -184,7 +187,6 @@ for i in stimuli:
     stimulus.draw()
     #flip the window
     win.flip()
-    #### setParallelData(0) should this be reset after flip?
     
     
     #reseting the stop watch
@@ -198,15 +200,15 @@ for i in stimuli:
     
     # "ask" how much time it took for the participants to answer?
     reaction_time = stopwatch.getTime()
+    total_time = stopwatch_2.getTime()
         
     noise.draw() #draw noise stimuli
     win.flip() #show noise
-    #### setParallelData(0) should this be reset after flip?
     core.wait(1) #wait a second
 
     #append data to logfile
     logfile = logfile.append({
-    "Timestamp": date, 
+    "Initiation_date": date, 
     "ID":ID,
     "Age":Age,
     "Gender":Gender,
@@ -219,8 +221,16 @@ for i in stimuli:
     "Changed":Changed,
     "Accuracy":Accuracy,
     "StimulusTrigger":StimTrig,
-    "ResponseTrigger":RespTrig  
+    "ResponseTrigger":RespTrig,
+    "Timestamp":total_time,
     }, ignore_index = True)
+    print(reaction_time)
+    print(total_time)
+    
+    if (key == ["q"]): 
+        break
+    
+    
 
 
 

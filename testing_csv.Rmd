@@ -1,0 +1,17 @@
+---
+title: "testing_csv"
+author: "Laurits Lyngbæk"
+date: "2023-02-27"
+output: html_document
+---
+
+```{r}
+pacman::p_load("tidyverse")
+library("tidyverse")
+```
+
+```{r}
+df <- read.csv("./logfiles/Logfile_tihiiii_2023_Feb_27_0939.csv")
+```
+
+
